@@ -1,0 +1,235 @@
+swagger: "2.0"
+info:
+  description: "CLOCK订单接口 接收到消息会进行校验并发送给Event Hub"
+  version: "1.0.0"
+  title: "Clock API"
+host: "52.130.185.242:8081"
+schemes:
+  - "http"
+paths:
+  /handleOrderBuChai:
+    post:
+      tags:
+        - "正单"
+      summary: "提交正单信息"
+      description: ""
+      operationId: "addPet"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+        - "plain/text"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "正单json结构"
+          required: true
+          schema:
+            $ref: "#/definitions/trade_fullinfo_get_response"
+      responses:
+        "400":
+          description: "json格式导致发送失败"
+        "200":
+          description: "发送成功"
+        "500":
+          description: "内部原因导致发送失败"
+
+definitions:
+  trade_fullinfo_get_response:
+    type: object
+    properties:
+      trade_fullinfo_get_response:
+        type: object
+        properties:
+          trade:
+            type: object
+            properties:
+              payment:
+                type: string
+                example: 530.00
+              snapshot_url:
+                type: string
+                example: u:2457383689962640046_1
+              seller_rate:
+                type: boolean
+              post_fee:
+                type: string
+                example: 0.00
+              receiver_state:
+                type: string
+                example: 北京
+              available_confirm_fee:
+                type: string
+                example: 530.00
+              received_payment:
+                type: string
+                example: 0.00
+              promotion_details:
+                type: object
+                properties:
+                  promotion_detail:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        discount_fee:
+                          type: string
+                          example: 0.00
+                        id:
+                          type: integer
+                          format: unsafe
+                          example: 2457383689963640000
+                        promotion_desc:
+                          type: string
+                          example: 春节不打烊:省0.00元
+                        promotion_id:
+                          type: string
+                          example: Tmall$bigMarkdown-50279094897_596968479468
+                        promotion_name:
+                          type: string
+                          example: 春节不打烊
+              tid:
+                type: integer
+                format: unsafe
+                example: 2457383689962640000
+              status:
+                type: string
+                example: WAIT_SELLER_SEND_GOODS
+              title:
+                type: string
+                example: Lancome兰蔻官方旗舰店
+              type:
+                type: string
+                example: fixed
+              discount_fee:
+                type: string
+                example: 0.00
+              has_post_fee:
+                type: boolean
+              total_fee:
+                type: string
+                example: 555.00
+              created:
+                type: string
+                example: 2022-02-08 23:59:40
+              pay_time:
+                type: string
+                example: 2022-02-08 23:59:59
+              modified:
+                type: string
+                example: 2022-02-08 23:59:59
+              seller_flag:
+                type: integer
+                format: int32
+                example: 0
+              shipping_type:
+                type: string
+                example: express
+              adjust_fee:
+                type: string
+                example: 0.00
+              trade_from:
+                type: string
+                example: WAPWAP
+              can_rate:
+                type: boolean
+              buyer_rate:
+                type: boolean
+              seller_can_rate:
+                type: boolean
+              receiver_city:
+                type: string
+                example: 北京市
+              orders:
+                type: object
+                properties:
+                  order:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        pic_path:
+                          type: string
+                          example: https://img.alicdn.com/bao/uploaded/i2/2360209412/O1CN01moS8RZ2JOkVfKUY2D_!!0-item_pic.jpg
+                        refund_status:
+                          type: string
+                          example: NO_REFUND
+                        outer_iid:
+                          type: string
+                          example: LC394600U
+                        snapshot_url:
+                          type: string
+                          example: u:2457383689963640046_1
+                        buyer_rate:
+                          type: boolean
+                        seller_rate:
+                          type: boolean
+                        cid:
+                          type: integer
+                          format: int32
+                          example: 121484013
+                        oid:
+                          type: integer
+                          format: unsafe
+                          example: 2457383689963640000
+                        status:
+                          type: string
+                          example: WAIT_SELLER_SEND_GOODS
+                        title:
+                          type: string
+                          example: 【春节不打烊】【情人节礼物】兰蔻发光眼霜 小黑瓶熬夜眼霜 秋冬淡纹淡黑眼圈
+                        price:
+                          type: string
+                          example: 530.00
+                        num_iid:
+                          type: integer
+                          format: int64
+                          example: 567015266775
+                        sku_id:
+                          type: string
+                          example: 3617729268437
+                        num:
+                          type: integer
+                          format: int32
+                          example: 1
+                        outer_sku_id:
+                          type: string
+                          example: LC394600U
+                        order_from:
+                          type: string
+                          example: WAPWAP
+                        total_fee:
+                          type: string
+                          example: 530.00
+                        payment:
+                          type: string
+                          example: 530.00
+                        discount_fee:
+                          type: string
+                          example: 0.00
+                        adjust_fee:
+                          type: string
+                          example: 0.00
+                        sku_properties_name:
+                          type: string
+                          example: 净含量:15ml
+                        is_oversold:
+                          type: boolean
+                        divide_order_fee:
+                          type: string
+                          example: 530.00
+                        part_mjz_discount:
+                          type: string
+                          example: 0.00
+              seller_nick:
+                type: string
+                example: lancome兰蔻官方旗舰店
+              is_part_consign:
+                type: boolean
+              coupon_fee:
+                type: integer
+                format: int32
+                example: 0
+              ouid:
+                type: string
+                example: AAH1AT6jAAAN7QwAASGSE7oO
